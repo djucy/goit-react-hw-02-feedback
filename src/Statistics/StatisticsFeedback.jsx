@@ -1,10 +1,9 @@
-import { Component } from "react";
+import { Component } from 'react';
 import Section from './Section';
 import Statistics from './Statistics';
 import FeedbackOptions from './FeedbackOptions';
 import Notification from './Notification';
-// import countTotalFeedback from './Calculate/countTotalFeedback';
-// import countPositiveFeedbackPercentage from './Calculate/countPositiveFeedbackPercentage';
+import { Container } from './Style/Style.styled';
 
 
 
@@ -21,24 +20,25 @@ export class StatisticsFeedback extends Component {
             good: prevState.good + 1
         }))
     }
+    
     countFeedbackNeutral = () => {
         this.setState(prevState => ({
             neutral:prevState.neutral+1
         }))
     }
+    
     countFeedbackBad = () => {
         this.setState(prevState => ({
            bad:prevState.bad +1 
         }))
     }
     
-   
     render() {
         const { good, neutral, bad } = this.state;
         const countTotalFeedback = good + neutral + bad;
-        const countPositiveFeedbackPercentage = good / countTotalFeedback * 100;
+        const countPositiveFeedbackPercentage = Math.round(good / countTotalFeedback * 100);
         return (
-            <div>
+            <Container>
                 <Section title="Please leave feedback" children={<FeedbackOptions onLeaveFeedback={{
                         good: this.countFeedbackGood,
                         neutral: this.countFeedbackNeutral,
@@ -47,8 +47,6 @@ export class StatisticsFeedback extends Component {
                     
                 </Section>
             
-            
-                
                 <Section title="Statistics" children={countTotalFeedback===0 ? <Notification message="There is no feedback"></Notification> :
                     <Statistics
                         good={good}
@@ -58,20 +56,8 @@ export class StatisticsFeedback extends Component {
                         positivePercentage={countTotalFeedback === 0 ? 0:countPositiveFeedbackPercentage} />
                  } ></Section>
 
-            {/* (good, neutral, bad) */}
-              {/*   */}
-            
-
-               
-
-
-            </div>
+            </Container>
         )
      }
-
-
 }
 export default StatisticsFeedback;
-
-// positivePercentage={}
-// this.countFeedbackGood

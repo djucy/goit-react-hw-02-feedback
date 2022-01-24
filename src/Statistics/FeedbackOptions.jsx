@@ -1,20 +1,16 @@
-
+import { ButtonList, Button } from './Style/Style.styled';
+import PropTypes from 'prop-types';
 
 const FeedbackOptions = ({ onLeaveFeedback }) => {
     return (
-        <ul>
-                <li><button onClick={onLeaveFeedback.good}>Good</button></li>
-                <li><button  onClick={onLeaveFeedback.neutral}>Neutral</button></li>
-                <li><button  onClick={onLeaveFeedback.bad}>Bad</button></li>
-            </ul>
+        <ButtonList>
+                <li><Button onClick={onLeaveFeedback.good}>Good</Button></li>
+                <li><Button  onClick={onLeaveFeedback.neutral}>Neutral</Button></li>
+                <li><Button  onClick={onLeaveFeedback.bad}>Bad</Button></li>
+            </ButtonList>
 ) 
 }
+FeedbackOptions.propTypes = {
+ onLeaveFeedback:PropTypes.object.isRequired,   
+}
 export default FeedbackOptions;
-
-{/* <ul>
-                <li><button onClick={this.countFeedbackGood}>Good</button></li>
-                <li><button  onClick={this.countFeedbackNeutral }>Neutral</button></li>
-                <li><button  onClick={this.countFeedbackBad}>Bad</button></li>
-            </ul> */}
-
-{/* <FeedbackOptions options={ } onLeaveFeedback={ } /> */}
